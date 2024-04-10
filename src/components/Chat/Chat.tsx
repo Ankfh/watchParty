@@ -350,7 +350,7 @@ export class Chat extends React.Component<ChatProps> {
               style={{ opacity: 1 }}
             >
               <span role="img" aria-label="Emoji">
-                😀
+                👍
               </span>
             </Icon>
             {/* <Icon onClick={this.sendChatMsg} name="send" inverted circular link /> */}
@@ -487,7 +487,7 @@ const ChatMessage = ({
               aria-label="React"
               style={{ margin: 0, fontSize: 18 }}
             >
-              😀
+              👍
             </span>
           </Icon>
         </div>
