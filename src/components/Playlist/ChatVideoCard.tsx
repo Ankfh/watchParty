@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, ButtonGroup, DropdownProps, Icon } from 'semantic-ui-react';
 import { decodeEntities, formatTimestamp } from '../../utils';
-
+import SlowMotionVideoOutlinedIcon from '@mui/icons-material/SlowMotionVideoOutlined';
 import classes from './ChatVideoCard.module.css';
 
 const ChatVideoCard: React.FC<{
@@ -104,14 +104,18 @@ const ChatVideoCard: React.FC<{
           <div className={classes.Controls}>
             <div style={{ marginLeft: 'auto' }}>
               <Button
-                className="playlistAddButton"
+                // className="playlistAddButton"
+                style={{ background: 'transparent' }}
                 onClick={(e) => {
                   e.stopPropagation();
                   e.nativeEvent.stopImmediatePropagation();
                   onPlaylistAdd(e, { value: video.url });
                 }}
               >
-                Add To Playlist
+                <SlowMotionVideoOutlinedIcon
+                  style={{ color: 'white' }}
+                  fontSize="large"
+                />
               </Button>
             </div>
           </div>

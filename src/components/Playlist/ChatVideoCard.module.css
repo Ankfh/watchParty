@@ -1,5 +1,5 @@
 .Card {
-  color: inherit;
+  color: white;
   display: block;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -38,7 +38,7 @@
 }
 
 .Title {
-  color: #000;
+  color: white;
   line-height: 1.5;
   overflow: hidden;
   white-space: nowrap;
@@ -48,7 +48,7 @@
 }
 
 .ChannelName {
-  color: #000;
+  color:white;
   opacity: 0.5;
   margin-top: 4px;
   display: block;

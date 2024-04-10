@@ -1,6 +1,7 @@
 import type MediasoupClient from 'mediasoup-client';
 import axios from 'axios';
 import React from 'react';
+import CallIcon from '@mui/icons-material/Call';
 import {
   Button,
   Dimmer,
@@ -62,7 +63,8 @@ import type WebTorrent from 'webtorrent';
 import styles from './App.module.css';
 import config from '../../config';
 import { MetadataContext } from '../../MetadataContext';
-
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ChatBubbleOutlinedIcon from '@mui/icons-material/ChatBubbleOutlined';
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: any;
@@ -1912,8 +1914,13 @@ export default class App extends React.Component<AppProps, AppState> {
                 this.setState({ currentTab: 'chat', unreadCount: 0 });
               }}
               as="a"
+              style={
+                this.state.currentTab === 'chat'
+                  ? { borderTop: '2px solid yellow', borderBottom: 'none' }
+                  : {}
+              }
             >
-              Chat
+              <ChatBubbleOutlinedIcon />
               {this.state.unreadCount > 0 && (
                 <Label circular color="red">
                   {this.state.unreadCount}
@@ -1925,8 +1932,13 @@ export default class App extends React.Component<AppProps, AppState> {
               active={this.state.currentTab === 'people'}
               onClick={() => this.setState({ currentTab: 'people' })}
               as="a"
+              style={
+                this.state.currentTab === 'people'
+                  ? { borderTop: '2px solid yellow', borderBottom: 'none' }
+                  : {}
+              }
             >
-              People
+              <CallIcon fontSize="medium" />
               <Label
                 circular
                 color={
@@ -1945,7 +1957,7 @@ export default class App extends React.Component<AppProps, AppState> {
               as="a"
             >
               {/* <Icon name="setting" /> */}
-              Settings
+              <MoreVertIcon />
             </Menu.Item>
           </Menu>
         }
@@ -2173,18 +2185,18 @@ export default class App extends React.Component<AppProps, AppState> {
                               trigger={
                                 <Button
                                   fluid
-                                  className="toolButton"
+                                  className={`toolButton  ${styles.buttonCss}`}
                                   disabled={!this.haveLock()}
                                   icon
                                   labelPosition="left"
-                                  color={'instagram'}
+                                  color={'black'}
                                   onClick={() => {
                                     this.setState({
                                       isScreenShareModalOpen: true,
                                     });
                                   }}
                                 >
-                                  <Icon name={'slideshare'} />
+                                  <Icon name={'close'} />
                                   Screenshare
                                 </Button>
                               }
@@ -2198,18 +2210,18 @@ export default class App extends React.Component<AppProps, AppState> {
                               trigger={
                                 <Button
                                   fluid
-                                  className="toolButton"
+                                  className={`toolButton  ${styles.buttonCss}`}
                                   disabled={!this.haveLock()}
                                   icon
                                   labelPosition="left"
-                                  color="green"
+                                  color={'black'}
                                   onClick={() => {
                                     this.setState({
                                       isVBrowserModalOpen: true,
                                     });
                                   }}
                                 >
-                                  <Icon name="desktop" />
+                                  <Icon name="close" />
                                   VBrowser
                                 </Button>
                               }
@@ -2339,18 +2351,20 @@ export default class App extends React.Component<AppProps, AppState> {
                               content="Stream your own video file"
                               trigger={
                                 <Button
+                                  secondary
                                   fluid
-                                  className="toolButton"
+                                  className={`toolButton  ${styles.buttonCss}`}
                                   disabled={!this.haveLock()}
                                   icon
                                   labelPosition="left"
+                                  color="black"
                                   onClick={() => {
                                     this.setState({
                                       isFileShareModalOpen: true,
                                     });
                                   }}
                                 >
-                                  <Icon name="file" />
+                                  <Icon name="close" />
                                   File
                                 </Button>
                               }

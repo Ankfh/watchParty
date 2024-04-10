@@ -17,7 +17,8 @@ import {
 } from '../../utils';
 import { examples } from '../../utils/examples';
 import ChatVideoCard from '../Playlist/ChatVideoCard';
-
+import styles from './comBox.module.css';
+import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 interface ComboBoxProps {
   roomSetMedia: (e: any, data: DropdownProps) => void;
   playlistAdd: (e: any, data: DropdownProps) => void;
@@ -85,7 +86,7 @@ export class ComboBox extends React.Component<ComboBoxProps> {
             }
             results = items.map((result: SearchResult, index: number) => (
               <Menu.Item
-                style={{ padding: '2px' }}
+                style={{ padding: '2px', color: 'white' }}
                 key={result.url}
                 onClick={(e: any) =>
                   this.setMediaAndClose(e, { value: result.url })
@@ -129,7 +130,6 @@ export class ComboBox extends React.Component<ComboBoxProps> {
       this.debounced();
     });
   };
-
   render() {
     const { roomMedia: currentMedia, getMediaDisplayName } = this.props;
     const { results } = this.state;
@@ -137,13 +137,11 @@ export class ComboBox extends React.Component<ComboBoxProps> {
       <div style={{ position: 'relative' }}>
         <div style={{ display: 'flex', gap: '4px' }}>
           <Form style={{ flexGrow: 1 }} autoComplete="off">
-            <Input
-              inverted
-              fluid
-              focus
+            <input
+              className={styles.inputWrapper} // Apply the CSS module class
               disabled={this.props.disabled}
               onChange={this.doSearch}
-              onFocus={(e: any) => {
+              onFocus={(e) => {
                 e.persist();
                 this.setState(
                   {
@@ -166,37 +164,21 @@ export class ComboBox extends React.Component<ComboBoxProps> {
                 setTimeout(() => e.target.select(), 100);
               }}
               onBlur={() => {
-                setTimeout(
-                  () =>
-                    this.setState({
-                      inputMedia: undefined,
-                      results: undefined,
-                    }),
-                  200,
-                );
+                setTimeout(() => {
+                  this.setState({
+                    inputMedia: undefined,
+                    results: undefined,
+                  });
+                }, 200);
               }}
-              onKeyPress={(e: any) => {
+              onKeyPress={(e) => {
                 if (e.key === 'Enter') {
                   this.setMediaAndClose(e, {
                     value: this.state.inputMedia,
                   });
                 }
               }}
-              icon={
-                <Icon
-                  onClick={(e: any) =>
-                    this.setMediaAndClose(e, {
-                      value: this.state.inputMedia,
-                    })
-                  }
-                  name="arrow right"
-                  link
-                  circular
-                  //bordered
-                />
-              }
-              loading={this.state.loading}
-              label={'Now Watching:'}
+              // loading={this.state.loading}
               placeholder="Enter video file URL, magnet link, YouTube link, or YouTube search term"
               value={
                 this.state.inputMedia !== undefined
@@ -206,11 +188,12 @@ export class ComboBox extends React.Component<ComboBoxProps> {
             />
           </Form>
           <Dropdown
-            icon="list"
-            labeled
-            className="icon"
+            icon={<VideoLibraryOutlinedIcon fontSize="large" />}
+            // labeled
+            className="grey"
             button
-            text={`Playlist (${this.props.playlist.length})`}
+            style={{ backgroundColor: '#222222' }}
+            // text={`Playlist (${this.props.playlist.length})`}
             scrolling
           >
             <Dropdown.Menu direction="left">
@@ -255,12 +238,15 @@ export class ComboBox extends React.Component<ComboBoxProps> {
           <Menu
             fluid
             vertical
+            className=""
             style={{
               position: 'absolute',
               top: '22px',
               maxHeight: '250px',
               overflow: 'scroll',
               zIndex: 1001,
+              background: '#3d403f',
+              color: 'white',
             }}
           >
             {results}

@@ -1,0 +1,9 @@
+.inputWrapper {
+    background: #454242 !important;
+  }
+
+
+  .inputWrapper:focus {
+    outline: none; 
+    border-color: transparent;
+  }

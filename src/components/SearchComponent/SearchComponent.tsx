@@ -78,7 +78,7 @@ export class SearchComponent extends React.Component<SearchComponentProps> {
     }
     return (
       <React.Fragment>
-        <Dropdown
+        {/* <Dropdown
           key={this.state.resetDropdown}
           fluid
           style={{ height: '36px' }}
@@ -120,7 +120,7 @@ export class SearchComponent extends React.Component<SearchComponentProps> {
               })}
             </Dropdown.Menu>
           ) : null}
-        </Dropdown>
+        </Dropdown> */}
       </React.Fragment>
     );
   }

@@ -5,7 +5,11 @@
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@googleapis/youtube": "^8.0.2",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
     "@stripe/stripe-js": "^1.54.2",
     "axios": "^1.6.5",
     "body-parser": "^1.20.2",

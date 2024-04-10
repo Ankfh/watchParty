@@ -36,3 +36,8 @@
 .fullHeightColumnFullscreen.fullHeightColumnFullscreen.fullHeightColumnFullscreen {
   height: calc(100vh);
 }
+
+
+.buttonCss {
+  background-color: #222222 !important;
+}
