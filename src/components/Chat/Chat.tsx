@@ -8,7 +8,10 @@ import { init } from 'emoji-mart';
 import Linkify from 'react-linkify';
 import { SecureLink } from 'react-secure-link';
 import styles from './Chat.module.css';
-
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import SendIcon from '@mui/icons-material/Send';
+import MoodIcon from '@mui/icons-material/Mood';
 import {
   formatTimestamp,
   formatUnixTime,
@@ -27,6 +30,7 @@ import {
   TransitionGroup,
 } from 'react-transition-group';
 import { MetadataContext } from '../../MetadataContext';
+import { GreyMoodIcon, MuiTextField } from './MuiInput';
 
 interface ChatProps {
   chat: ChatMessage[];
@@ -111,9 +115,8 @@ export class Chat extends React.Component<ChatProps> {
     }
   };
 
-  updateChatMsg = (_e: any, data: { value: string }) => {
-    // console.log(e.target.selectionStart);
-    this.setState({ chatMsg: data.value });
+  updateChatMsg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ chatMsg: e.target.value });
   };
 
   sendChatMsg = () => {
@@ -318,43 +321,44 @@ export class Chat extends React.Component<ChatProps> {
             xPosition={this.state.reactionMenu.xPosition}
           /> */}
         </CSSTransition>
-        <Form autoComplete="off">
-          <Input
-            inverted
-            fluid
-            onKeyPress={(e: any) => e.key === 'Enter' && this.sendChatMsg()}
-            onChange={this.updateChatMsg}
-            value={this.state.chatMsg}
-            error={this.chatTooLong()}
-            icon
+        <Form
+          style={{ borderBottomColor: 'transparent !important' }}
+          autoComplete="off"
+        >
+          <MuiTextField
+            sx={{ borderBottomColor: 'transparent !important' }}
+            fullWidth
+            // variant="filled"
             disabled={this.props.isChatDisabled}
             placeholder={
               this.props.isChatDisabled
                 ? 'The chat was disabled by the room owner.'
                 : 'Enter a message...'
             }
-          >
-            <input />
-            <Icon
-              // style={{ right: '40px' }}
-              onClick={() => {
-                // Add a delay to prevent the click from triggering onClickOutside
-                const curr = this.state.isPickerOpen;
-                setTimeout(() => this.setState({ isPickerOpen: !curr }), 100);
-              }}
-              name={undefined}
-              inverted
-              circular
-              link
-              disabled={this.props.isChatDisabled}
-              style={{ opacity: 1 }}
-            >
-              <span role="img" aria-label="Emoji">
-                😀
-              </span>
-            </Icon>
-            {/* <Icon onClick={this.sendChatMsg} name="send" inverted circular link /> */}
-          </Input>
+            error={this.chatTooLong()}
+            value={this.state.chatMsg}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              this.updateChatMsg(e)
+            }
+            onKeyDown={(e) => e.key === 'Enter' && this.sendChatMsg()}
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  disabled={this.props.isChatDisabled}
+                  onClick={() => {
+                    // Add a delay to prevent the click from triggering onClickOutside
+                    const curr = this.state.isPickerOpen;
+                    setTimeout(
+                      () => this.setState({ isPickerOpen: !curr }),
+                      100,
+                    );
+                  }}
+                >
+                  <GreyMoodIcon />
+                </IconButton>
+              ),
+            }}
+          />
         </Form>
       </div>
     );
@@ -487,7 +491,7 @@ const ChatMessage = ({
               aria-label="React"
               style={{ margin: 0, fontSize: 18 }}
             >
-              😀
+              👍
             </span>
           </Icon>
         </div>

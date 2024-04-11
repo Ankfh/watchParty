@@ -393,7 +393,7 @@ export class Room {
     this.io.of(this.roomId).emit('REC:host', this.getHostState());
     if (socket && data) {
       const chatMsg = { id: socket.id, cmd: 'host', msg: data };
-      this.addChatMessage(socket, chatMsg);
+      // this.addChatMessage(socket, chatMsg);
     }
     if (data === '') {
       this.playlistNext(null);
@@ -593,7 +593,7 @@ export class Room {
         cmd: 'playlistAdd',
         msg: data,
       };
-      this.addChatMessage(socket, chatMsg);
+      // this.addChatMessage(socket, chatMsg);
     }
     if (!this.video) {
       this.playlistNext(null);
@@ -629,7 +629,7 @@ export class Room {
       msg: this.tsMap[socket.id]?.toString(),
     };
     this.paused = false;
-    this.addChatMessage(socket, chatMsg);
+    // this.addChatMessage(socket, chatMsg);
   };
 
   private pauseVideo = (socket: Socket) => {
@@ -643,7 +643,7 @@ export class Room {
       msg: this.tsMap[socket.id]?.toString(),
     };
     this.paused = true;
-    this.addChatMessage(socket, chatMsg);
+    // this.addChatMessage(socket, chatMsg);
   };
 
   private seekVideo = (socket: Socket, data: number) => {
@@ -656,7 +656,7 @@ export class Room {
     this.videoTS = data;
     socket.broadcast.emit('REC:seek', data);
     const chatMsg = { id: socket.id, cmd: 'seek', msg: data?.toString() };
-    this.addChatMessage(socket, chatMsg);
+    // this.addChatMessage(socket, chatMsg);
   };
 
   private setPlaybackRate = (socket: Socket, data: number) => {
@@ -673,7 +673,7 @@ export class Room {
       cmd: 'playbackRate',
       msg: data?.toString(),
     };
-    this.addChatMessage(socket, chatMsg);
+    // this.addChatMessage(socket, chatMsg);
   };
 
   private setLoop = (socket: Socket, data: boolean) => {

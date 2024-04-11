@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Icon, Popup } from 'semantic-ui-react';
 import { InviteModal } from '../Modal/InviteModal';
-
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import { MuiPersonAddIcon } from './MuiIcon';
 export const InviteButton = () => {
   const [inviteModalOpen, setInviteModalOpen] = useState(false);
 
@@ -13,18 +14,9 @@ export const InviteButton = () => {
       <Popup
         content="Invite friends!"
         trigger={
-          <Button
-            color="green"
-            icon
-            labelPosition="left"
-            fluid
-            className="toolButton"
-            style={{ minWidth: '12em' }}
-            onClick={() => setInviteModalOpen(true)}
-          >
-            <Icon name="add user" />
-            Invite Friends
-          </Button>
+          <div onClick={() => setInviteModalOpen(true)}>
+            <MuiPersonAddIcon fontSize="large" />
+          </div>
         }
       />
     </>

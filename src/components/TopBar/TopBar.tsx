@@ -80,6 +80,7 @@ export class NewRoomButton extends React.Component<{
 
 type SignInButtonProps = {
   fluid?: boolean;
+  name?: string;
 };
 
 export class SignInButton extends React.Component<SignInButtonProps> {
@@ -114,13 +115,18 @@ export class SignInButton extends React.Component<SignInButtonProps> {
       return (
         <div
           style={{
+            display: 'flex',
             margin: '4px',
             width: '100px',
             alignItems: 'center',
             cursor: 'pointer',
+            height: '41px',
+            gap: '5px',
           }}
         >
           <Image
+            // size="small"
+            style={{ width: '55px', height: '55px' }}
             avatar
             src={this.state.userImage}
             onClick={() => this.setState({ isProfileOpen: true })}
@@ -131,6 +137,14 @@ export class SignInButton extends React.Component<SignInButtonProps> {
               close={() => this.setState({ isProfileOpen: false })}
             />
           )}
+          <div
+            style={{
+              color: 'white',
+              gap: '5px',
+            }}
+          >
+            {this.props.name}
+          </div>
         </div>
       );
     }
@@ -146,7 +160,7 @@ export class SignInButton extends React.Component<SignInButtonProps> {
           content="Sign in for additional features"
           trigger={
             <Dropdown
-              style={{ height: '36px' }}
+              style={{ height: '36px', width: '100%' }}
               icon="sign in"
               labeled
               className="icon"
@@ -276,6 +290,8 @@ export class TopBar extends React.Component<{
   static contextType = MetadataContext;
   declare context: React.ContextType<typeof MetadataContext>;
   render() {
+    console.log(this.props.hideSignin, 'hello');
+
     const subscribeButton = <SubscribeButton />;
     return (
       <React.Fragment>
@@ -355,8 +371,7 @@ export class TopBar extends React.Component<{
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                marginLeft: 10,
-
+                    marginLeft: 10,
                   }}
                 >
                   <div
@@ -395,13 +410,13 @@ export class TopBar extends React.Component<{
               gap: '4px',
             }}
           >
-            {this.props.showInviteButton && <InviteButton />}
+            {/* {this.props.showInviteButton && <InviteButton />} */}
             {!this.props.hideNewRoom && <NewRoomButton openNewTab />}
             {!this.props.hideMyRooms && this.context.user && (
               <ListRoomsButton />
             )}
             {subscribeButton}
-            {!this.props.hideSignin && <SignInButton />}
+            {/* {!this.props.hideSignin && <SignInButton />} */}
           </div>
         </div>
       </React.Fragment>

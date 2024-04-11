@@ -65,6 +65,10 @@ import config from '../../config';
 import { MetadataContext } from '../../MetadataContext';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ChatBubbleOutlinedIcon from '@mui/icons-material/ChatBubbleOutlined';
+import UserAvatar from './UserAvatar';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 declare global {
   interface Window {
     onYouTubeIframeAPIReady: any;
@@ -1874,7 +1878,7 @@ export default class App extends React.Component<AppProps, AppState> {
             : styles.fullHeightColumn
         }`}
       >
-        <Form autoComplete="off">
+        {/* <Form autoComplete="off">
           <Input
             inverted
             fluid
@@ -1895,7 +1899,14 @@ export default class App extends React.Component<AppProps, AppState> {
               />
             }
           />
-        </Form>
+        </Form> */}
+        {
+          <UserAvatar
+            displayRightContent={displayRightContent}
+            name={this.state.myName}
+            showInviteButton
+          />
+        }
         {
           <Menu
             inverted
@@ -2017,24 +2028,43 @@ export default class App extends React.Component<AppProps, AppState> {
     return (
       <React.Fragment>
         {!this.state.isAutoPlayable && (
-          <Modal inverted="true" basic open>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Button
-                primary
-                size="large"
-                onClick={() => {
-                  this.setState({ isAutoPlayable: true });
-                  this.localSetMute(false);
-                  this.localSetVolume(1);
+          <div>
+            <Modal
+              onClick={() => {
+                this.setState({ isAutoPlayable: true });
+                this.localSetMute(false);
+                this.localSetVolume(1);
+              }}
+              inverted="true"
+              basic
+              open
+            >
+              <div
+                // onClick={() => {
+                //   this.setState({ isAutoPlayable: true });
+                //   this.localSetMute(false);
+                //   this.localSetVolume(1);
+                // }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  height: '100vh',
                 }}
-                icon
-                labelPosition="left"
               >
-                <Icon name="volume up" />
-                Click to unmute
-              </Button>
-            </div>
-          </Modal>
+                <Button
+                  style={{ background: 'transparent' }}
+                  primary
+                  size="large"
+                  icon
+                  labelPosition="left"
+                >
+                  <Icon name="volume up" />
+                  Click/Tab Screen to unmute
+                </Button>
+              </div>
+            </Modal>
+          </div>
         )}
         {this.state.multiStreamSelection && (
           <MultiStreamModal
@@ -2196,7 +2226,7 @@ export default class App extends React.Component<AppProps, AppState> {
                                     });
                                   }}
                                 >
-                                  <Icon name={'close'} />
+                                  {/* <Icon name={'close'} /> */}
                                   Screenshare
                                 </Button>
                               }
@@ -2221,7 +2251,7 @@ export default class App extends React.Component<AppProps, AppState> {
                                     });
                                   }}
                                 >
-                                  <Icon name="close" />
+                                  {/* <Icon name="close" /> */}
                                   VBrowser
                                 </Button>
                               }
@@ -2364,7 +2394,7 @@ export default class App extends React.Component<AppProps, AppState> {
                                     });
                                   }}
                                 >
-                                  <Icon name="close" />
+                                  {/* <Icon name="close" /> */}
                                   File
                                 </Button>
                               }
@@ -2527,11 +2557,16 @@ export default class App extends React.Component<AppProps, AppState> {
                       top: '50%',
                       right: 'calc(0% - 18px)',
                       zIndex: 900,
+                      background: '#333231',
                     }}
                     circular
                     size="mini"
                     icon={
-                      this.state.showRightBar ? 'angle right' : 'angle left'
+                      this.state.showRightBar ? (
+                        <KeyboardArrowRightIcon sx={{ color: 'white' }} />
+                      ) : (
+                        <KeyboardArrowLeftIcon sx={{ color: 'white' }} />
+                      )
                     }
                     onClick={() =>
                       this.setState({ showRightBar: !this.state.showRightBar })

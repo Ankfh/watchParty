@@ -19,6 +19,8 @@ import { examples } from '../../utils/examples';
 import ChatVideoCard from '../Playlist/ChatVideoCard';
 import styles from './comBox.module.css';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+import LibraryAddOutlinedIcon from '@mui/icons-material/LibraryAddOutlined';
+import { MuiLibraryAddOutlinedIcon } from './MuiStyle';
 interface ComboBoxProps {
   roomSetMedia: (e: any, data: DropdownProps) => void;
   playlistAdd: (e: any, data: DropdownProps) => void;
@@ -135,7 +137,14 @@ export class ComboBox extends React.Component<ComboBoxProps> {
     const { results } = this.state;
     return (
       <div style={{ position: 'relative' }}>
-        <div style={{ display: 'flex', gap: '4px' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: '4px',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Form style={{ flexGrow: 1 }} autoComplete="off">
             <input
               className={styles.inputWrapper} // Apply the CSS module class
@@ -233,6 +242,9 @@ export class ComboBox extends React.Component<ComboBoxProps> {
               })}
             </Dropdown.Menu>
           </Dropdown>
+          <div>
+            <MuiLibraryAddOutlinedIcon fontSize="large" />
+          </div>
         </div>
         {Boolean(results) && this.state.inputMedia !== undefined && (
           <Menu
