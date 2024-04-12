@@ -2,7 +2,7 @@ import { Button, TextField } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
 import { lightBlue, blueGrey } from '@mui/material/colors';
 import MoodIcon from '@mui/icons-material/Mood';
-
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 export const MuiTextField = styled(TextField)(({ theme }) => ({
   borderBottomColor: 'transparent !important',
   border: 'none !important',
@@ -70,6 +70,6 @@ export const MuiTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-export const GreyMoodIcon = styled(MoodIcon)({
-  color: blueGrey[400], // Change icon color to grey
+export const GreyMoodIcon = styled(EmojiEmotionsIcon)({
+  color: 'white', // Change icon color to grey
 });
