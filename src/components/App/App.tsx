@@ -1,6 +1,6 @@
 import type MediasoupClient from 'mediasoup-client';
 import axios from 'axios';
-import React from 'react';
+import React, { RefObject } from 'react';
 import CallIcon from '@mui/icons-material/Call';
 import {
   Button,
@@ -163,6 +163,7 @@ interface AppState {
 
 export default class App extends React.Component<AppProps, AppState> {
   static contextType = MetadataContext;
+  menuItemRef = React.createRef<any>();
   declare context: React.ContextType<typeof MetadataContext>;
   state: AppState = {
     state: 'starting',
@@ -1904,13 +1905,14 @@ export default class App extends React.Component<AppProps, AppState> {
           <UserAvatar
             displayRightContent={displayRightContent}
             name={this.state.myName}
+            menuItemRef={this.menuItemRef}
             showInviteButton
           />
         }
         {
           <Menu
             inverted
-            widths={3}
+            widths={2}
             style={{
               marginTop: '4px',
               marginBottom: '4px',
@@ -1962,12 +1964,14 @@ export default class App extends React.Component<AppProps, AppState> {
               </Label>
             </Menu.Item>
             <Menu.Item
+              style={{ display: 'none ' }}
               name="settings"
               active={this.state.currentTab === 'settings'}
               onClick={() => this.setState({ currentTab: 'settings' })}
               as="a"
+              ref={this.menuItemRef}
             >
-              {/* <Icon name="setting" /> */}
+              {/* {<Icon name="setting" />  */}
               <MoreVertIcon />
             </Menu.Item>
           </Menu>
