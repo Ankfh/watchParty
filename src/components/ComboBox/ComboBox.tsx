@@ -21,6 +21,7 @@ import styles from './comBox.module.css';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import LibraryAddOutlinedIcon from '@mui/icons-material/LibraryAddOutlined';
 import { MuiLibraryAddOutlinedIcon } from './MuiStyle';
+import CellTowerIcon from '@mui/icons-material/CellTower';
 interface ComboBoxProps {
   roomSetMedia: (e: any, data: DropdownProps) => void;
   playlistAdd: (e: any, data: DropdownProps) => void;
@@ -145,6 +146,50 @@ export class ComboBox extends React.Component<ComboBoxProps> {
             alignItems: 'center',
           }}
         >
+          <div
+            style={{
+              paddingRight: '4px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <a href="/" style={{ display: 'flex' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'start',
+
+                  marginLeft: 10,
+                }}
+              >
+                <div
+                  style={{
+                    // textTransform: 'uppercase',
+                    fontWeight: 700,
+                    color: 'white',
+                    fontSize: '30px',
+                    lineHeight: '30px',
+                  }}
+                >
+                  en
+                </div>
+                <div
+                  style={{
+                    // textTransform: 'uppercase',
+                    fontWeight: 700,
+                    color: 'yellow',
+                    fontSize: '30px',
+                    lineHeight: '30px',
+                    marginLeft: 'auto',
+                  }}
+                >
+                  Sync
+                </div>
+              </div>
+            </a>
+          </div>
           <Form style={{ flexGrow: 1 }} autoComplete="off">
             <input
               className={styles.inputWrapper} // Apply the CSS module class
@@ -242,8 +287,21 @@ export class ComboBox extends React.Component<ComboBoxProps> {
               })}
             </Dropdown.Menu>
           </Dropdown>
-          <div>
-            <MuiLibraryAddOutlinedIcon fontSize="large" />
+          <div
+            style={{
+              // paddingRight: 'px',
+              gap: '34px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <CellTowerIcon style={{ color: 'white' }} fontSize="large" />
+            </div>
+            <div>
+              <MuiLibraryAddOutlinedIcon fontSize="large" />
+            </div>
           </div>
         </div>
         {Boolean(results) && this.state.inputMedia !== undefined && (

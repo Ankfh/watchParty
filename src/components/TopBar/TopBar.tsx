@@ -340,7 +340,7 @@ export class TopBar extends React.Component<{
               />
             </div>
           </a> */}
-          {this.props.roomTitle || this.props.roomDescription ? (
+          {/* {this.props.roomTitle || this.props.roomDescription ? (
             <div
               style={{
                 display: 'flex',
@@ -400,7 +400,7 @@ export class TopBar extends React.Component<{
                 </div>
               </a>
             </React.Fragment>
-          )}
+          )} */}
           <Announce />
           <div
             className={appStyles.mobileStack}
