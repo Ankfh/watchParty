@@ -1035,10 +1035,15 @@ export class Room {
   };
 
   private changeController = (socket: Socket, data: string) => {
+    console.log(data,'notttttttttttttttt==')
+
     if (data && data.length > 100) {
+      console.log(data,'return')
       return;
     }
     if (!this.validateLock(socket.id)) {
+      console.log(data,'return')
+
       return;
     }
     if (this.vBrowser) {

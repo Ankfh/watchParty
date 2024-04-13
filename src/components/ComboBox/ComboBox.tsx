@@ -33,6 +33,8 @@ interface ComboBoxProps {
   mediaPath: string | undefined;
   disabled?: boolean;
   playlist: PlaylistVideo[];
+  controllingRef: any;
+  controller: any;
 }
 
 export class ComboBox extends React.Component<ComboBoxProps> {
@@ -43,7 +45,6 @@ export class ComboBox extends React.Component<ComboBoxProps> {
     lastResultTimestamp: Number(new Date()),
   };
   debounced: any = null;
-
   setMediaAndClose = (e: any, data: DropdownProps) => {
     window.setTimeout(
       () => this.setState({ inputMedia: undefined, results: undefined }),
@@ -297,7 +298,12 @@ export class ComboBox extends React.Component<ComboBoxProps> {
             }}
           >
             <div>
-              <CellTowerIcon style={{ color: 'white' }} fontSize="large" />
+              <CellTowerIcon
+                style={{
+                  color: this.props.controller ? 'yellow' : 'white',
+                }}
+                fontSize="large"
+              />
             </div>
             <div>
               <MuiLibraryAddOutlinedIcon fontSize="large" />
