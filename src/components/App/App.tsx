@@ -164,6 +164,7 @@ interface AppState {
 export default class App extends React.Component<AppProps, AppState> {
   static contextType = MetadataContext;
   menuItemRef = React.createRef<any>();
+  controllingRef = React.createRef<any>();
   declare context: React.ContextType<typeof MetadataContext>;
   state: AppState = {
     state: 'starting',
@@ -400,6 +401,7 @@ export default class App extends React.Component<AppProps, AppState> {
       this.setState({ roomLoop: data });
     });
     socket.on('REC:changeController', (data: string) => {
+      console.log(data, 'data');
       this.setState({ controller: data });
     });
     socket.on('REC:host', async (data: HostState) => {
@@ -1493,7 +1495,7 @@ export default class App extends React.Component<AppProps, AppState> {
   };
 
   changeController = async (_e: any, data: DropdownProps) => {
-    // console.log(data);
+    console.log(data.value, 'dataaaaaaaaaaaaaaaaaaaaaaa=');
     this.socket.emit('CMD:changeController', data.value);
   };
 
@@ -1836,6 +1838,8 @@ export default class App extends React.Component<AppProps, AppState> {
   };
 
   render() {
+    console.log(this.state.controller, 'boyyy');
+
     const sharer = this.state.participants.find((p) => p.isScreenShare);
     const controls = (
       <Controls
@@ -2154,12 +2158,12 @@ export default class App extends React.Component<AppProps, AppState> {
             }}
           ></Message>
         )}
-        <TopBar
+        {/* <TopBar
           roomTitle={this.state.roomTitle}
           roomDescription={this.state.roomDescription}
           roomTitleColor={this.state.roomTitleColor}
           showInviteButton
-        />
+        /> */}
         {
           <Grid stackable celled="internally">
             <Grid.Row id="theaterContainer">
@@ -2191,6 +2195,8 @@ export default class App extends React.Component<AppProps, AppState> {
                         mediaPath={this.state.mediaPath}
                         disabled={!this.haveLock()}
                         playlist={this.state.playlist}
+                        controllingRef={this.controllingRef}
+                        controller={this.state.controller}
                       />
                       <Separator />
                       <div
@@ -2281,6 +2287,7 @@ export default class App extends React.Component<AppProps, AppState> {
                                   text: this.state.nameMap[p.id] || p.id,
                                   value: p.id,
                                 }))}
+                                ref={this.controllingRef}
                               ></Dropdown>
                             }
                           />
