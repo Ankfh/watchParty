@@ -11,7 +11,7 @@
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@stripe/stripe-js": "^1.54.2",
-    "axios": "^1.6.5",
+    "axios": "^1.7.2",
     "body-parser": "^1.20.2",
     "can-autoplay": "^3.0.2",
     "compression": "^1.7.4",
